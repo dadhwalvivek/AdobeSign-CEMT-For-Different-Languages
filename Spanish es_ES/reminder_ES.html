@@ -1,0 +1,451 @@
+<!-- # Copyright 2022 Adobe
+# All Rights Reserved.
+
+# NOTICE: Adobe permits you to use, modify, and distribute this file in
+# accordance with the terms of the Adobe license agreement accompanying
+# it. If you have received this file from a source other than Adobe,
+# then your use, modification, or distribution of it requires the prior
+# written permission of Adobe.  -->
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <title></title>
+  <style type="text/css">
+    body,
+    table,
+    div,
+    td,
+    p {
+      font-family: adobe-clean, "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: #2C2C2C;
+      font-weight: 300;
+    }
+
+    p {
+      margin: 0;
+      padding: 0;
+    }
+
+    a {
+      border: none;
+    }
+
+    a,
+    a:link,
+    a:visited,
+    a:hover,
+    a:active {
+      color: #09b2ed;
+      text-decoration: underline;
+      font-weight: bold;
+    }
+
+    .separator {
+      margin: 0;
+      border: 1px solid #CACACA;
+    }
+
+    img {
+      border: 0;
+    }
+
+    span.e_heading {
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    h1 {
+      font-size: 28px;
+      font-weight: 300;
+      color: #6E6E6E;
+      padding-bottom: 5px;
+    }
+
+    .bodyHeading {
+      margin: 0;
+      font-size: 22px;
+      color: #454545;
+      text-align: center;
+    }
+
+    .footerContainer {
+      margin-top: 16px;
+      font-size: 12px;
+      color: #4b4b4b
+    }
+
+    ul {
+      font-size: 17px;
+    }
+
+    .footerContainer p {
+      margin-bottom: 1em;
+    }
+  </style>
+</head>
+
+<body>
+  <center>
+    <table cellspacing="16" cellpadding="0" border="0"
+      style="max-width: 600px; background-color: #f0f0f0;border-collapse: separate">
+      <tr style="background-color: #ffffff">
+        <td>
+
+
+          <table style="background-color: #fff;width:100%; padding-bottom: 20px;" border="0" cellspacing="0"
+            cellpadding="0" align="center">
+            <tbody>
+              <tr>
+                <td valign="bottom">
+                  <table class="" border="0" cellspacing="0" cellpadding="0">
+                    <tbody>
+                      <tr>
+                        <td>
+                          <table border="0" cellpadding="0" cellspacing="0">
+                            <tr>
+                              <td style="width:16px;">&nbsp;</td>
+                              <td>
+                                #* Use header image if provided. Otherwise, use logo *#
+                                #if ($!header_image != "null")
+                                <img src="$!image_url_prefix/cobrand_logo/$!header_image" alt="Image d'en-tête" />
+                                #else
+                                <img src="$!image_url_prefix/cobrand_logo/$!settings_logo_filename" width="353"
+                                  height="60" hspace="2" alt="Image d'en-tête" />
+                                #end
+
+                                #* Request blank.gif only if the tracking ID is defined and non-empty. *#
+                                #if ($!secure_tracking_id != "null")
+                                <img src="$!image_url_prefix/track/$!secure_tracking_id/blank.gif" alt="Image d'en-tête vierge" width="1"
+                                  height="1" border="0" title="" />
+                                #end
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+
+                <td style="color:#ffffff;font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:18px"
+                  width="39" align="right" valign="top">
+                  <img style="background-color:#ff0000;display:inline-block"
+                    src="https://corporate.na1.echosign.com/images/emailNextGen/email-adobe-tag-classic@2x.png"
+                    border="0" alt="Adobe" width="39" height="64">
+                </td>
+                <td style="width:16px;">&nbsp;</td>
+              </tr>
+            </tbody>
+          </table>
+          <table id="main" cellpadding="20" cellspacing="0" style="width: 100%">
+            <tr>
+              <td>
+
+                <p style="display: none !important; visibility: hidden; mso-hide: all; font-size: 1px; color: #ffffff; line-height: 1px;
+  max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden;">
+                  Veuillez vérifier et compléter $!agreement_titlecasename.
+                </p>
+
+                <p class="bodyHeading"
+                  style="margin: 0; font-size: 22px; color: #454545; text-align: center; word-break:break-word">
+      #if ($!subtype == "reminder_signed")
+        Rappel par e-mail concernant <b>$!agreement_titlecasename</b>
+      #elseif ($!subtype == "reminder_next_to_esign")
+          #if ($!participation_role == "ACCEPTOR") Veuillez accepter <b>$!agreement_titlecasename</b>
+          #elseif ($!participation_role == "APPROVER") Veuillez approuver <b>$!agreement_titlecasename</b>
+          #elseif ($!participation_role == "CERTIFIED_RECIPIENT") Veuillez accuser réception de <b>$!agreement_titlecasename</b>
+          #elseif ($!participation_role == "FORM_FILLER") Veuillez remplir <b>$!agreement_titlecasename</b>
+          #elseif ($!participation_role == "SIGNER") Veuillez signer <b>$!agreement_titlecasename</b>
+          #else Veuillez déléguer <b>$!agreement_titlecasename</b>
+          #end
+      #elseif ($!subtype == "reminder_next_to_sign")
+        Veuillez signer <b>$!agreement_titlecasename</b>
+      #elseif ($!subtype == "reminder_not_next_to_esign")
+        Rappel par e-mail concernant <b>$!agreement_titlecasename</b>
+      #elseif ($!subtype == "reminder_not_next_to_sign")
+        Rappel par e-mail concernant <b>$!agreement_titlecasename</b>
+      #end
+                </p>
+
+
+                <center>
+
+        #if ($!subtype == "reminder_signed")
+        <p>$!originator_fullnameoremail a demandé que ce rappel soit envoyé après que vous ayez déjà
+        #if ($!participation_role == "ACCEPTOR") accepté ce document.
+        #elseif ($!participation_role == "APPROVER") approuvé ce document.
+        #elseif ($!participation_role == "CERTIFIED_RECIPIENT") accusé réception de ce document.
+        #elseif ($!participation_role == "FORM_FILLER") rempli ce document.
+        #elseif ($!participation_role == "SIGNER") signé ce document.
+        #else délégué ce document.
+        #end
+        </p>
+            #elseif ($!subtype == "reminder_next_to_esign")
+
+
+
+                  <!--[if mso]>
+          <table align="center" width="150" border="0" cellpadding="0" cellspacing="0" style="width:150px;">
+              <tr>
+  <td height="28px">
+    &nbsp;
+  </td>
+</tr>
+            <tr>
+              <td height="32" valign="middle" style="background-color:#1473E6; height:32px; padding: 8px 14px; border-radius:20px">
+                <center>
+                  <a target="_blank" href="$!esign_link" style="background-color:#1473E6; color:#ffffff; display:inline-block; font-size: 15px; font-weight: 700 !important;
+                    line-height:28px; text-decoration:none; -webkit-text-size-adjust:none; padding:8px 14px">
+                      #if ($!participation_role == "ACCEPTOR") Vérifier et signer
+                      #elseif ($!participation_role == "APPROVER") Vérifier et approuver
+                      #elseif ($!participation_role == "CERTIFIED_RECIPIENT") Afficher et accuser réception
+                      #elseif ($!participation_role == "FORM_FILLER") Vérifier et remplir
+                      #elseif ($!participation_role == "SIGNER") Vérifier et signer
+                      #elseif ($!participation_role == "DELEGATE_TO_ACCEPTOR") Vérifier et déléguer
+                      #elseif ($!participation_role == "DELEGATE_TO_APPROVER") Vérifier et déléguer
+                      #elseif ($!participation_role == "DELEGATE_TO_CERTIFIED_RECIPIENT") Afficher et déléguer
+                      #elseif ($!participation_role == "DELEGATE_TO_FORM_FILLER") Vérifier et déléguer
+                      #elseif ($!participation_role == "DELEGATE_TO_SIGNER") Vérifier et déléguer
+                      #end
+                  </a>
+                </center>
+              </td>
+            </tr>
+              <tr>
+  <td height="28px">
+    &nbsp;
+  </td>
+</tr>
+          </table>
+        <![endif]-->
+
+                  <!--[if !mso]> <!---->
+                  <div style="text-align: center; margin: 31px 0;">
+                    <a target="_blank" href="$!esign_link" style="background-color: #1473e6; border-color: #1473e6; color: #ffffff!important; border-width: 2px; border-style: solid;
+              border-radius: 20px; display: inline-block; height: auto; min-width: 72px; padding: 8px 14px; font-size: 15px; font-weight: 700 !important;
+              text-decoration: none; margin: 0; justify-content: center;">
+                      #if ($!participation_role == "ACCEPTOR") Vérifier et signer
+                      #elseif ($!participation_role == "APPROVER") Vérifier et approuver
+                      #elseif ($!participation_role == "CERTIFIED_RECIPIENT") Afficher et accuser réception
+                      #elseif ($!participation_role == "FORM_FILLER") Vérifier et remplir
+                      #elseif ($!participation_role == "SIGNER") Vérifier et signer
+                      #elseif ($!participation_role == "DELEGATE_TO_ACCEPTOR") Vérifier et déléguer
+                      #elseif ($!participation_role == "DELEGATE_TO_APPROVER") Vérifier et déléguer
+                      #elseif ($!participation_role == "DELEGATE_TO_CERTIFIED_RECIPIENT") Afficher et déléguer
+                      #elseif ($!participation_role == "DELEGATE_TO_FORM_FILLER") Vérifier et déléguer
+                      #elseif ($!participation_role == "DELEGATE_TO_SIGNER") Vérifier et déléguer
+                      #end
+                    </a>
+                  </div>
+                  <!-- <![endif]-->
+
+     #elseif ($!subtype == "reminder_next_to_sign")
+      <p>
+        Veuillez <b>imprimer, signer et renvoyer par fax</b> le <b>$!agreement_titlecasename</b> ci-joint. Une page de garde contenant mon numéro de fax Adobe Acrobat Sign <b>est incluse</b>.
+      </p>
+      <p>
+        Après votre signature du $!agreement_titlecasename, toutes les personnes recevront automatiquement une notification par e-mail.
+      </p>
+    #end
+                </center>
+
+                <hr class="separator" />
+
+                <table border="0" cellpadding="0" cellspacing="0" style="font-size: 17px;">
+                  <tr>
+                    <td height="28px">
+                      &nbsp;
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p style="word-break:break-word">$!reminder_note.replaceAll("\n", "<br />")</p><br />
+
+
+                      <p
+                        style="text-transform: uppercase; font-size: 13px; letter-spacing: 0.78px; color: #2C2C2C; word-break:break-word">
+                        <b>$!originator_full_name</b></p>
+                    </td>
+                  </tr>
+                </table>
+
+                <table border="0" cellpadding="0" cellspacing="0">
+                  <tr>
+                    <td height="28px">
+                      &nbsp;
+                    </td>
+                  </tr>
+                </table>
+
+                <hr class="separator" />
+
+
+
+                <table border="0" cellpadding="0" cellspacing="0">
+                  <tr>
+                    <td height="28px">
+                      &nbsp;
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+
+    #if ($!subtype != "reminder_signed")
+        <p>$!originator_fullnameoremail a demandé que ce rappel soit envoyé.</p><br>
+    #end
+    
+
+    #if ($!reminder_frequency == "WEEKDAILY")
+      <p>Ce rappel sera renvoyé chaque jour ouvré.</p><br>
+    #end
+    #if ($!reminder_frequency == "DAILY")
+      <p>Ce rappel sera renvoyé chaque jour.</p><br>
+    #end
+    #if ($!reminder_frequency == "WEEKLY")
+      <p>Ce rappel sera renvoyé chaque semaine.</p><br>
+    #end
+    #if ($!reminder_frequency == "DAILY_UNTIL_SIGNED")
+      <p>Ce rappel sera renvoyé chaque jour jusqu'à achèvement du document.</p><br>
+    #end
+    #if ($!reminder_frequency == "WEEKLY_UNTIL_SIGNED")
+      <p>Ce rappel sera renvoyé chaque semaine jusqu'à achèvement du document.</p><br>
+    #end
+    #if ($!reminder_frequency != "ONCE")
+      <p><a style="color: #1373E6" href="$!stop_link">Cliquez ici</a> si vous souhaitez ne plus recevoir de rappels concernant cet accord.</p>
+    #end
+    <br/>
+    <br/>
+    #if ($!subtype == "reminder_signed")
+      <br/>
+      <br/>
+        #if ($!document_retention_days != 0)
+          <p>
+              #if ($!demarket_emails)
+                <a style="color: #1373E6" href="$!agrlink"><b>Cliquez ici</b></a> pour consulter ce document en ligne.
+              #else
+                <a style="color: #1373E6" href="$!agrlink"><b>Cliquez ici</b></a> pour consulter ce document en ligne dans votre compte Adobe Acrobat Sign.
+              #end
+              #if ($!document_retention_days != -1)
+                (Le document sera disponible pendant $!document_retention_days jours)
+              #end
+          </p>
+        #end
+    #elseif ($!subtype == "reminder_next_to_esign")
+        #if ($!expiration_date_iso != "")
+          <p>
+            Ce document est disponible
+              #if ($!participation_role == "ACCEPTOR") pour acceptation
+              #elseif ($!participation_role == "APPROVER") pour approbation
+              #elseif ($!participation_role == "CERTIFIED_RECIPIENT")  ## [empty]
+              #elseif ($!participation_role == "FORM_FILLER") pour remplissage
+              #elseif ($!participation_role == "SIGNER") pour signature
+              #elseif ($!participation_role == "DELEGATE_TO_ACCEPTOR") pour délégation d'acceptation
+              #elseif ($!participation_role == "DELEGATE_TO_APPROVER") pour délégation d'approbation
+              #elseif ($!participation_role == "DELEGATE_TO_CERTIFIED_RECIPIENT") pour délégation de confirmation de réception
+              #elseif ($!participation_role == "DELEGATE_TO_FORM_FILLER") pour délégation de remplissage
+              #elseif ($!participation_role == "DELEGATE_TO_SIGNER") pour délégation de signature
+              #end
+            jusqu'au $!date.format("MMMM d, yyyy", $!date.toDate("yyyy-MM-dd'T'HH:mm:ss", $!expiration_date_iso)) et expirera ensuite.
+          </p>
+        #end
+    #elseif ($!subtype == "reminder_next_to_sign")
+        #if ($!is_protected)
+            ## XXX: This block is present only in the "next to sign" legacy emails,
+            ## but looks like it might properly need to be in all of them.
+          <p style="font-size: 11px">
+            Pour plus de sécurité, l'expéditeur a défini un mot de passe d'ouverture pour ce document.
+            Vous devrez contacter $!originator_full_name afin d'obtenir le mot de passe pour consulter cette pièce jointe.
+            <br/>
+          </p>
+        #end
+        #if ($!expiration_date_iso != "")
+          <p>
+            Ce document est disponible
+              #if ($!participation_role == "ACCEPTOR") pour acceptation
+              #elseif ($!participation_role == "APPROVER") pour approbation
+              #elseif ($!participation_role == "CERTIFIED_RECIPIENT")  ## [empty]
+              #elseif ($!participation_role == "FORM_FILLER") pour remplissage
+              #elseif ($!participation_role == "SIGNER") pour signature
+              #elseif ($!participation_role == "DELEGATE_TO_ACCEPTOR") pour délégation d'acceptation
+              #elseif ($!participation_role == "DELEGATE_TO_APPROVER") pour délégation d'approbation
+              #elseif ($!participation_role == "DELEGATE_TO_CERTIFIED_RECIPIENT") pour délégation de confirmation de réception
+              #elseif ($!participation_role == "DELEGATE_TO_FORM_FILLER") pour délégation de remplissage
+              #elseif ($!participation_role == "DELEGATE_TO_SIGNER") pour délégation de signature
+              #end
+            jusqu'au $!date.format("MMMM d, yyyy", $!date.toDate("yyyy-MM-dd'T'HH:mm:ss", $!expiration_date_iso)) et expirera ensuite.
+          </p>
+        #end
+    #elseif ($!subtype == "reminder_not_next_to_esign")
+      <br/>
+      <br/>
+      <a style="color: #1373E6" href="$!agrlink"><b>Cliquez ici</b> pour vous connecter à Adobe Acrobat Sign et consulter ce document.</a>
+    #elseif ($!subtype == "reminder_not_next_to_sign")
+      <br/>
+      <br/>
+      <a style="color: #1373E6" href="$!agrlink"><b>Cliquez ici</b> pour vous connecter à Adobe Acrobat Sign et consulter ce document.</a>
+    #end
+                    </td>
+                  </tr>
+                </table>
+
+
+
+                <table border="0" cellpadding="0" cellspacing="0">
+                  <tr>
+                    <td height="28px">
+                      &nbsp;
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <table style="font-size: 12px; color: #4b4b4b">
+            <tr>
+              <td>
+                <center>
+                  <table border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                      <td>
+                        <img
+                          src="https://corporate.na1.echosign.com/images/emailNextGen/email-powered-by-adobe-sign-logo.1@2x.png"
+                          width="82" hspace="2" alt="Propulsé par Adobe Acrobat Sign">
+                      </td>
+                    </tr>
+                    <tr>
+                      <td height="16px">
+                        &nbsp;
+                      </td>
+                    </tr>
+                  </table>
+                </center>
+                <p style="margin-bottom: 18px">En continuant, vous acceptez que le présent accord puisse être signé au moyen d'une signature électronique ou manuscrite.</p>
+
+                <p style="margin-bottom: 18px">
+                  Pour continuer à recevoir nos e-mails, veuillez ajouter adobesign@adobesign.com à votre carnet d'adresses ou à votre liste
+                  d'expéditeurs autorisés.
+                </p>
+                <p style="margin-bottom: 18px">&copy; $date.get('yyyy') Adobe. Tous droits réservés.</p>
+
+                <img
+                  src="https://corporate.na1.echosign.com/track/CBFCIBAA3AAABLblqZhCkvl99gGBPUxdNWTxfJ70r2P9sYKP48F4DwNDG_JW_bKVvimmNuu2g38XRIFOfnk4*/blank.gif"
+                  style="visibility: hidden; mso-hide: all; color: #ffffff;
+                    max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden; border: 0;" alt="Image de pied de page" title="" />
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </center>
+</body>
+
+</html>

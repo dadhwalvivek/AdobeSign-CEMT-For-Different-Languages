@@ -1,0 +1,338 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <title></title>
+  <style type="text/css">
+    body,
+    table,
+    div,
+    td,
+    p {
+      font-family: adobe-clean, "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: #2C2C2C;
+      font-weight: 300;
+    }
+
+    p {
+      margin: 0;
+      padding: 0;
+    }
+
+    a {
+      border: none;
+    }
+
+    a,
+    a:link,
+    a:visited,
+    a:hover,
+    a:active {
+      color: #09b2ed;
+      text-decoration: underline;
+      font-weight: bold;
+    }
+
+    .separator {
+      margin: 0;
+      border: 1px solid #CACACA;
+    }
+
+    img {
+      border: 0;
+    }
+
+    span.e_heading {
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    h1 {
+      font-size: 28px;
+      font-weight: 300;
+      color: #6E6E6E;
+      padding-bottom: 5px;
+    }
+
+    .bodyHeading {
+      margin: 0;
+      font-size: 22px;
+      color: #454545;
+      text-align: center;
+    }
+
+    .footerContainer {
+      margin-top: 16px;
+      font-size: 12px;
+      color: #4b4b4b
+    }
+
+    ul {
+      font-size: 17px;
+    }
+
+    .footerContainer p {
+      margin-bottom: 1em;
+    }
+  </style>
+</head>
+
+<body>
+  <center>
+    <table cellspacing="16" cellpadding="0" border="0"
+      style="max-width: 600px; background-color: #f0f0f0;border-collapse: separate">
+      <tr style="background-color: #ffffff">
+        <td>
+
+
+          <table style="background-color: #fff;width:100%; padding-bottom: 20px;" border="0" cellspacing="0"
+            cellpadding="0" align="center">
+            <tbody>
+              <tr>
+                <td valign="bottom">
+                  <table class="" border="0" cellspacing="0" cellpadding="0">
+                    <tbody>
+                      <tr>
+                        <td>
+                          <table border="0" cellpadding="0" cellspacing="0">
+                            <tr>
+                              <td style="width:16px;">&nbsp;</td>
+                              <td>
+                                #* Use header image if provided. Otherwise, use logo *#
+                                #if ($!header_image != "null")
+                                <img src="$!image_url_prefix/cobrand_logo/$!header_image" alt="Headerbild" />
+                                #else
+                                <img src="$!image_url_prefix/cobrand_logo/$!settings_logo_filename" width="353"
+                                  height="60" hspace="2" alt="Headerbild" />
+                                #end
+
+                                #* Request blank.gif only if the tracking ID is defined and non-empty. *#
+                                #if ($!secure_tracking_id != "null")
+                                <img src="$!image_url_prefix/track/$!secure_tracking_id/blank.gif" alt="Leeres Headerbild" width="1"
+                                  height="1" border="0" title="Leeres Headerbild" />
+                                #end
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+
+                <td style="color:#ffffff;font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:18px"
+                  width="39" align="right" valign="top">
+                  <img style="background-color:#ff0000;display:inline-block"
+                    src="https://corporate.na1.echosign.com/images/emailNextGen/email-adobe-tag-classic@2x.png"
+                    border="0" alt="Adobe" width="39" height="64">
+                </td>
+                <td style="width:16px;">&nbsp;</td>
+              </tr>
+            </tbody>
+          </table>
+          <table id="main" cellpadding="20" cellspacing="0" style="width: 100%">
+            <tr>
+              <td>
+
+                <p style="display: none !important; visibility: hidden; mso-hide: all; font-size: 1px; color: #ffffff; line-height: 1px;
+  max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden;">
+                  Abgebrochen: $!agreement_titlecasename.
+                </p>
+
+                <p class="bodyHeading"
+                  style="margin: 0; font-size: 22px; color: #454545; text-align: center; word-break:break-word">
+                  <b>$!agreement_titlecasename</b> <br /> wurde abgebrochen
+                </p>
+
+
+                <hr class="separator" />
+
+                <table border="0" cellpadding="0" cellspacing="0" style="font-size: 17px;">
+                  <tr>
+                    <td height="28px">
+                      &nbsp;
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p style="word-break:break-word">
+                        #if ($!refusal_category != "null" || $!comment != "null")
+                        Grund:
+                        #end
+
+                        <i>
+                          #if ($!refusal_category == "sender_cancel")
+                          Vom Absender abgebrochen.
+                          #elseif ($!refusal_category == "prefer_fax")
+                          Bevorzuge, meine Unterschrift per Fax zu senden.
+                          #elseif ($!refusal_category == "refuse")
+                          #if ($!canceler_participation_role == "APPROVER")
+                          Werde dieses Dokument nicht genehmigen.
+                          #elseif ($!canceler_participation_role == "SIGNER")
+                          Werde dieses Dokument nicht signieren.
+                          #elseif ($!canceler_participation_role == "DELEGATE_TO_SIGNER" ||
+                          $!canceler_participation_role == "DELEGATE_TO_ACCEPTOR" || $!canceler_participation_role ==
+                          "DELEGATE_TO_CERTIFIED_RECIPIENT" || $!canceler_participation_role ==
+                          "DELEGATE_TO_FORM_FILLER" || $!canceler_participation_role == "DELEGATE_TO_APPROVER")
+                          Werde dieses Dokument nicht delegieren.
+                          #elseif ($!canceler_participation_role == "ACCEPTOR")
+                          Werde dieses Dokument nicht akzeptieren.
+                          #elseif ($!canceler_participation_role == "CERTIFIED_RECIPIENT")
+                          Werde den Empfang dieses Dokuments nicht bestätigen.
+                          #elseif ($!canceler_participation_role == "FORM_FILLER")
+                          Werde dieses Formular nicht ausfüllen.
+                          #end
+                          #end
+                          #if ($!comment != "null")
+                          $!comment
+                          #end
+                        </i>
+                      </p><br />
+
+
+                      <p
+                        style="text-transform: uppercase; font-size: 13px; letter-spacing: 0.78px; color: #2C2C2C; word-break:break-word">
+                        <b>$!canceler_full_name_and_company_or_email</b></p>
+                    </td>
+                  </tr>
+                </table>
+
+                <table border="0" cellpadding="0" cellspacing="0">
+                  <tr>
+                    <td height="28px">
+                      &nbsp;
+                    </td>
+                  </tr>
+                </table>
+
+                <hr class="separator" />
+
+
+
+                <table border="0" cellpadding="0" cellspacing="0">
+                  <tr>
+                    <td height="28px">
+                      &nbsp;
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p>
+                        #if ($!cancel_type == "self")
+                        Auf Ihren Wunsch hin hat Adobe Acrobat Sign den Austausch der Vereinbarung für
+                        <b>$!agreement_titlecasename</b> beendet.
+                        #if ($!any_exposed && $!notify)
+                        Alle Beteiligten wurden entsprechend benachrichtigt und das Dokument wurde aus den Adobe Acrobat Sign-Konten aller Beteiligten gelöscht.
+                        #elseif($!any_exposed)
+                        Das Dokument wurde aus den Adobe Acrobat Sign-Konten aller Beteiligten gelöscht.
+                        #end
+                        #elseif ($!cancel_type == "signer_to_signers")
+                        $!canceler_full_name_and_company_or_email hat den Austausch der Vereinbarung für
+                        <b>$!agreement_titlecasename</b> beendet. Alle Beteiligten wurden entsprechend benachrichtigt,
+                        und das Dokument wurde aus den Adobe Acrobat Sign-Konten aller Beteiligten gelöscht.
+                        #elseif ($!cancel_type == "originator_to_signers")
+                        Ich habe den Austausch der Vereinbarung für <b>$!agreement_titlecasename</b> abgebrochen, obwohl Sie sie
+                        bereits abgeschlossen und zurückgesendet haben. Diese Transaktion wurde von Adobe Acrobat Sign beendet
+                        und das Dokument wurde aus unseren Adobe Acrobat Sign-Konten entfernt. Es sind keine weiteren Schritte
+                        Ihrerseits erforderlich.
+                        #elseif ($!cancel_type == "originator_to_unsigned_exposed")
+                        Ich habe den Austausch der Vereinbarung für <b>$!agreement_titlecasename</b> abgebrochen.
+                        Diese Transaktion wurde von Adobe Acrobat Sign beendet und das Dokument wurde aus unseren Adobe Acrobat Sign-Konten entfernt.
+                        #elseif ($!cancel_type == "signer_to_originator")
+                        $!canceler_full_name_and_company_or_email
+                        #if ($!participation_role == "APPROVER")
+                        hat Ihre Anfrage zur Genehmigung von <b>$!agreement_titlecasename</b> erhalten, konnte dieser jedoch nicht nachkommen.
+                        Dieser Austausch der Vereinbarung wurde auf deren Wunsch beendet.
+                        #elseif ($!participation_role == "SIGNER")
+                        hat Ihre Anfrage zum Signieren von <b>$!agreement_titlecasename</b> erhalten, konnte dieser jedoch nicht nachkommen.
+                        Dieser Austausch der Vereinbarung wurde auf deren Wunsch beendet.
+                        #elseif ($!participation_role == "DELEGATE_TO_SIGNER")
+                        hat Ihre Anfrage zur Delegierung von <b>$!agreement_titlecasename</b> zur Signatur erhalten, konnte dieser jedoch nicht nachkommen.
+                        Dieser Austausch der Vereinbarung wurde auf deren Wunsch beendet.
+                        #elseif ($!participation_role == "DELEGATE_TO_APPROVER")
+                        hat Ihre Anfrage zur Delegierung von <b>$!agreement_titlecasename</b> zur Genehmigung erhalten, konnte dieser jedoch nicht nachkommen.
+                        Dieser Austausch der Vereinbarung wurde auf deren Wunsch beendet.
+                        #elseif ($!participation_role == "ACCEPTOR")
+                        hat Ihre Anfrage zur Annahme von <b>$!agreement_titlecasename</b> erhalten, konnte dieser jedoch nicht nachkommen.
+                        Dieser Austausch der Vereinbarung wurde auf deren Wunsch beendet.
+                        #elseif ($!participation_role == "CERTIFIED_RECIPIENT")
+                        hat Ihre Anfrage zur Empfangsbestätigung von <b>$!agreement_titlecasename</b> erhalten, konnte dieser jedoch nicht nachkommen.
+                        Dieser Austausch der Vereinbarung wurde auf deren Wunsch beendet.
+                        #elseif ($!participation_role == "FORM_FILLER")
+                        hat Ihre Anfrage zum Ausfüllen von <b>$!agreement_titlecasename</b> erhalten, konnte dieser jedoch nicht nachkommen.
+                        Dieser Austausch der Vereinbarung wurde auf deren Wunsch beendet.
+                        #elseif ($!participation_role == "DELEGATE_TO_ACCEPTOR")
+                        hat Ihre Anfrage zur Delegierung von <b>$!agreement_titlecasename</b> zur Annahme erhalten, konnte dieser jedoch nicht nachkommen.
+                        Dieser Austausch der Vereinbarung wurde auf deren Wunsch beendet.
+                        #elseif ($!participation_role == "DELEGATE_TO_CERTIFIED_RECIPIENT")
+                        hat Ihre Anfrage zur Delegierung von <b>$!agreement_titlecasename</b> zur Empfangsbestätigung erhalten, konnte dieser jedoch nicht nachkommen.
+                        Dieser Austausch der Vereinbarung wurde auf deren Wunsch beendet.
+                        #elseif ($!participation_role == "DELEGATE_TO_FORM_FILLER")
+                        hat Ihre Anfrage zur Delegierung von <b>$!agreement_titlecasename</b> zum Ausfüllen erhalten, konnte dieser jedoch nicht nachkommen.
+                        Dieser Austausch der Vereinbarung wurde auf deren Wunsch beendet.
+                        #end
+                        #end
+                      </p>
+                    </td>
+                  </tr>
+                </table>
+
+
+
+                <table border="0" cellpadding="0" cellspacing="0">
+                  <tr>
+                    <td height="28px">
+                      &nbsp;
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <table style="font-size: 12px; color: #4b4b4b">
+            <tr>
+              <td>
+                <center>
+                  <table border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                      <td>
+                        <img
+                          src="https://corporate.na1.echosign.com/images/emailNextGen/email-powered-by-adobe-sign-logo.1@2x.png"
+                          width="82" hspace="2" alt="Bereitgestellt von Adobe Acrobat Sign">
+                      </td>
+                    </tr>
+                    <tr>
+                      <td height="16px">
+                        &nbsp;
+                      </td>
+                    </tr>
+                  </table>
+                </center>
+                <p style="margin-bottom: 18px">
+                  Um sicherzustellen, dass Sie weiterhin unsere E-Mails erhalten, fügen Sie bitte adobesign@adobesign.com
+                  zu Ihrem Adressbuch oder zur Liste sicherer Absender hinzu.
+                </p>
+
+                <p style="margin-bottom: 18px">&copy; $date.get('yyyy') Adobe. Alle Rechte vorbehalten.</p>
+
+                <img
+                  src="https://corporate.na1.echosign.com/track/CBFCIBAA3AAABLblqZhCkvl99gGBPUxdNWTxfJ70r2P9sYKP48F4DwNDG_JW_bKVvimmNuu2g38XRIFOfnk4*/blank.gif"
+                  style="visibility: hidden; mso-hide: all; color: #ffffff;
+                    max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden; border: 0;" alt="Fußzeilenbild" title="" />
+              </td>
+            </tr>
+          </table>
+          <!-- END FOOTER -->
+        </td>
+      </tr>
+    </table>
+  </center>
+</body>
+
+</html>
